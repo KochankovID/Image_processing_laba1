@@ -12,13 +12,14 @@ if __name__ == "__main__":
         cv2.imshow('Gray image', gray)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-    if mode == 1:
-
-
-
-
-# blue, green, red = cv2.split(image)
-
-# draw = ImageDraw.Draw(image)   Создаем инструмент для рисования.
-# height = image.size[1]   Определяем высоту.
-# pix = image.load()   Выгружаем значения пикселей
+    if mode == 1: #	Конвертация цветного изображения в монохромное изображение
+        image = cv2.imread(r'C:\Users\HP-PC\Desktop\google.jpg')
+      #  blue, green, red = cv2.split(image)  # Split the image into its channels
+        b = image[:, :, 0]
+        g = image[:, :, 1]
+        r = image[:, :, 2]
+        single = (b + g + r)/3
+        cv2.imshow('Original image', image)
+        cv2.imshow('average image', cv2.merge([single, single, single]))
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
