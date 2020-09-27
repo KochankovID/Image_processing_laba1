@@ -18,8 +18,15 @@ if __name__ == "__main__":
         b = image[:, :, 0]
         g = image[:, :, 1]
         r = image[:, :, 2]
-        single = (b + g + r)/3
+        single = (b + g + r) / 3
+        #-----------------
+        copy = image.copy()
+        copy[:, :, 0] = single = (b + g + r) / 3
+        copy[:, :, 1] =  single = (b + g + r)/3
+        copy[:, :, 2] =  single = (b + g + r)/3
+        
+        #-------------------
         cv2.imshow('Original image', image)
-        cv2.imshow('average image', cv2.merge([single, single, single]))
+        cv2.imshow('average image', copy)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
