@@ -76,8 +76,9 @@ def create_two_windows(first_image: str, second_image: str,
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2 and len(sys.argv) != 0:
+    if len(sys.argv) != 3 and len(sys.argv) != 1:
         print('Uncorrect args, should be: first_image second_image')
+        exit()
 
     dir_path = os.path.dirname(__file__)
     first_image_path = os.path.join(dir_path, 'src','clean_image.jpg')
