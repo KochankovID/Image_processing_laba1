@@ -67,7 +67,7 @@ def create_two_windows(image1: np.ndarray, image2: np.ndarray,
 if __name__ == "__main__":
     try:
         image_path = sys.argv[1]
-        assert osp.isfile(image_path), f'image_path is not a file!'
+        assert osp.isfile(image_path), '{} is not a file!'.format(image_path)
     except IndexError:
         raise AssertionError('image path must be specified!')
 
