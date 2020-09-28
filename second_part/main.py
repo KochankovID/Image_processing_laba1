@@ -22,7 +22,7 @@ if __name__ == "__main__":
     start = time.time()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     end = time.time()
-    print(end - start)
+    print('opencv time: ', end - start)
 
     cv2.imshow('Original image', image)
     cv2.imshow('Gray image', gray)
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     start = time.time()
     copy1 = average(image2)
     end = time.time()
-    print(end - start)
+    print('other realisation: ', end - start)
 
     cv2.imshow('Original image', image2)
     cv2.imshow('average image', copy1)
@@ -42,6 +42,7 @@ if __name__ == "__main__":
 
     cv2.waitKey(30000)
     cv2.destroyAllWindows()
+
 
 
 
