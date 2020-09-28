@@ -18,9 +18,9 @@ def average (img):
 if __name__ == "__main__":
     print('hello world')
     mode = int(input('mode:'))
+    image = cv2.imread('src/google.jpg')
 
     if mode == 0:
-        image = cv2.imread(r'src/google.jpg')
         start = time.time()
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         end = time.time()
@@ -28,22 +28,20 @@ if __name__ == "__main__":
 
         cv2.imshow('Original image', image)
         cv2.imshow('Gray image', gray)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
 
 
     if mode == 1:
-        image = cv2.imread(r'src/google.jpg')
-
         start = time.time()
         copy1 = average(image)
         end = time.time()
         print(end - start)
-        
+
         cv2.imshow('Original image', image)
         cv2.imshow('average image', copy1)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+
+    cv2.waitKey(15000)
+    cv2.destroyAllWindows()
+
 
 
 
