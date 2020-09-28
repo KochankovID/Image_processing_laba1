@@ -4,8 +4,7 @@ import cv2
 from dataclasses import dataclass
 from typing import Tuple
 import sys
-
-from tqdm import tqdm
+import os.path as osp
 
 from image_processing.converters import BGR2YUV, YUV2BGR
 from image_processing.filters import BGR_brightness_filter, YUV_brightness_filter
@@ -68,6 +67,7 @@ def create_two_windows(image1: np.ndarray, image2: np.ndarray,
 if __name__ == "__main__":
     try:
         image_path = sys.argv[1]
+        assert osp.isfile(image_path), f'image_path is not a file!'
     except IndexError:
         raise AssertionError('image path must be specified!')
 
