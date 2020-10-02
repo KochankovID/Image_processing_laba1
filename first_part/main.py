@@ -22,7 +22,7 @@ def Compare2ImagesIMMSE(first_image: str, second_image: str) -> None:
     image2 = cv2.imread(second_image)
 
     error = immse(image1, image2)
-    print('The mean-squared error from algorithm is '+str(error))
+    print('The mean-squared error from algorithm is '+ str(error))
     return error
 
 

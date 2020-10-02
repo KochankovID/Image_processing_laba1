@@ -3,9 +3,13 @@ import cv2
 
 import sys
 import os.path as osp
+import time
 
 from image_processing.converters import BGR2YUV, YUV2BGR
 from image_processing.filters import BGR_brightness_filter, YUV_brightness_filter
+
+sys.path.append("../")
+from first_part.error_functions.compare_functions import immse
 
 
 def test_BGR2YUV_converter(image_path: str) -> None:
@@ -62,13 +66,38 @@ def create_two_windows(image1: np.ndarray, image2: np.ndarray,
     cv2.destroyAllWindows()
 
 
+def test_compare_brightness_filters(image_path: str):
+    bgr_image = cv2.imread(image_path)
+
+    yuv_image = BGR2YUV(bgr_image)
+
+    time_bgr_start = time.clock()
+    higher_brightness_bgr = BGR_brightness_filter(bgr_image, 100)
+    time_bgr = time.clock() - time_bgr_start
+
+    time_yuv_start = time.clock()
+    higher_brightness_yuv = YUV_brightness_filter(yuv_image, 120)
+    time_yuv = time.clock() - time_yuv_start
+
+    yuv_converted_to_bgr = YUV2BGR(higher_brightness_yuv)
+
+    error = immse(higher_brightness_bgr, yuv_converted_to_bgr)
+    print('The mean-squared error of two images is '+ str(error))
+    print(f'Time of bgr brightness filter is {time_bgr}')
+    print(f'Time of yuv brightness filter is {time_yuv}')
+
+
+
+
 if __name__ == "__main__":
     try:
         image_path = sys.argv[1]
         assert osp.isfile(image_path), '{} is not a file!'.format(image_path)
     except IndexError:
-        raise AssertionError('image path must be specified!')
+        print('path to the image is not valid! The default path was set!')
+        image_path = './src/halloyne.png'
 
     test_BGR2YUV_converter(image_path)
     test_YUV2BGR_converter(image_path)
     test_brightness_filters(image_path)
+    test_compare_brightness_filters(image_path)
