@@ -44,7 +44,6 @@ if __name__ == "__main__":
     except IndexError:
         raise AssertionError('image path must be specified!')
 
-    # image = cv2.imread('src/google.jpg')
     image = cv2.imread(image_path)
     cv2.imshow('Original image', image)
 
