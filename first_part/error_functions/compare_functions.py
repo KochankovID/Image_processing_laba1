@@ -1,16 +1,19 @@
 import numpy as np
 import math
 
+
 def _as_floats(image1, image2):
     float_type = np.result_type(image1.dtype, image2.dtype, np.float32)
     image1 = np.asarray(image1, dtype=float_type)
     image2 = np.asarray(image2, dtype=float_type)
     return image1, image2
 
+
 def immse(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The mean-squared error'''
     # image1, image2 = _as_floats(image1, image2) # - uncomment if you want same results for immse and psnr
     return ((image1 - image2) ** 2).mean()
+
 
 def psnr(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The peak signal-to-noise ratio'''
@@ -19,6 +22,7 @@ def psnr(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
         return 100
     PIXEL_MAX = 255.0
     return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
+
 
 def ssim(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The structural similarity index for measuring'''

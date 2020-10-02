@@ -6,10 +6,6 @@ from skimage.metrics import mean_squared_error, peak_signal_noise_ratio, structu
 
 from error_functions.compare_functions import immse, psnr, ssim
 
-from dataclasses import dataclass
-from typing import Tuple
-
-from tqdm import tqdm
 
 def Compare2ImagesFromLibIMMSE(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
@@ -18,6 +14,8 @@ def Compare2ImagesFromLibIMMSE(first_image: str, second_image: str) -> None:
     error = mean_squared_error(image1, image2)
     print('The mean-squared error from skimage.metrics.mean_squared_error is '+str(error))
     return error
+
+
 def Compare2ImagesIMMSE(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
@@ -25,6 +23,8 @@ def Compare2ImagesIMMSE(first_image: str, second_image: str) -> None:
     error = immse(image1, image2)
     print('The mean-squared error from algorithm is '+str(error))
     return error
+
+
 def Compare2ImagesFromLibPSNR(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
@@ -32,6 +32,8 @@ def Compare2ImagesFromLibPSNR(first_image: str, second_image: str) -> None:
     error = peak_signal_noise_ratio(image1, image2)
     print('The peak signal-to-noise ratio from skimage.metrics.peak_signal_noise_ratio is '+str(error))
     return error
+
+
 def Compare2ImagesPSNR(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
@@ -39,6 +41,8 @@ def Compare2ImagesPSNR(first_image: str, second_image: str) -> None:
     error = psnr(image1, image2)
     print('The peak signal-to-noise ratio from algorithm is '+str(error))
     return error
+
+
 def Compare2ImagesFromLibSSIM(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
@@ -46,6 +50,8 @@ def Compare2ImagesFromLibSSIM(first_image: str, second_image: str) -> None:
     error = structural_similarity(image1.flatten(), image2.flatten())
     print('The structural similarity index for measuring from skimage.metrics.structural_similarity is '+str(error))
     return error
+
+
 def Compare2ImagesSSIM(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
@@ -53,6 +59,7 @@ def Compare2ImagesSSIM(first_image: str, second_image: str) -> None:
     error = ssim(image1, image2)
     print('The structural similarity index for measuring from algorithm is '+str(error))
     return error
+
 
 def create_two_windows(first_image: str, second_image: str,
                        title1: str = 'Left window', title2: str = 'Right window') -> None:
@@ -81,12 +88,12 @@ if __name__ == "__main__":
         exit()
 
     dir_path = os.path.dirname(__file__)
-    first_image_path = os.path.join(dir_path, 'src','clean_image.jpg')
-    second_image_path = os.path.join(dir_path, 'src','noise_poisson_image.jpg')
-    
-    if len(sys.argv) == 0:
+    first_image_path = os.path.join(dir_path, 'src', 'clean_image.jpg')
+    second_image_path = os.path.join(dir_path, 'src', 'noise_poisson_image.jpg')
+
+    if len(sys.argv) == 1:
         print('Will be used images from example')
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 3:
         first_image_path = sys.argv[1]
         second_image_path = sys.argv[2]
 
