@@ -1,3 +1,7 @@
+#.idea
+./idea/
+.idea
+
 # venv
 venv
 
@@ -7,3 +11,4 @@ venv
 # python cache
 __pycache__
 ./third_part/image_processing/__pycache__/*
+
