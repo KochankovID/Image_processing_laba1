@@ -11,7 +11,7 @@ def _as_floats(image1, image2):
 
 def immse(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The mean-squared error'''
-    image1, image2 = _as_floats(image1, image2)  # - uncomment if you want same results for immse and psnr
+    image1, image2 = _as_floats(image1, image2) # - uncomment if you want same results for immse and psnr
     return ((image1 - image2) ** 2).mean()
 
 
@@ -38,12 +38,8 @@ def ssim(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     K1 = 0.01
     K2 = 0.03
 
-    C1 = (K1 * 255) ** 2
-    C2 = (K2 * 255) ** 2
-    C3 = C2 / 2
+    C1 = (K1 * 2) ** 2
+    C2 = (K2 * 2) ** 2
 
-    l = (2 * ux * uy + C1) / (ux ** 2 + uy ** 2 + C1)
-    c = (2 * qxy + C2) / (qx + qy + C2)
-    s = (qxy + C3) / (math.sqrt(qx * qy) + C3)
-    res = (l ** 1) * (c ** 1) * (s ** 1)
+    res = ((2 * ux * uy + C1) * (2 * qxy + C2)) / ((ux ** 2 + uy ** 2 + C1)*(qx + qy + C2))
     return res.mean()
