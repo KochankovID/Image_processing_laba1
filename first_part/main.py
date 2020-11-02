@@ -58,9 +58,11 @@ def Compare2ImagesPSNR(first_image: str, second_image: str) -> None:
 def Compare2ImagesFromLibSSIM(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
+    gray_image1 = cv2.cvtColor(image1, cv2.COLOR_RGB2GRAY)
+    gray_image2 = cv2.cvtColor(image2, cv2.COLOR_RGB2GRAY)
 
     start = time.time()
-    error = structural_similarity(image1.flatten(), image2.flatten())
+    error = structural_similarity(gray_image1, gray_image2)
     end = time.time()
     print('The structural similarity index for measuring from skimage.metrics.structural_similarity is ' +
           str(error) + ' time ' + str(end - start))
@@ -70,9 +72,11 @@ def Compare2ImagesFromLibSSIM(first_image: str, second_image: str) -> None:
 def Compare2ImagesSSIM(first_image: str, second_image: str) -> None:
     image1 = cv2.imread(first_image)
     image2 = cv2.imread(second_image)
+    gray_image1 = cv2.cvtColor(image1, cv2.COLOR_RGB2GRAY)
+    gray_image2 = cv2.cvtColor(image2, cv2.COLOR_RGB2GRAY)
 
     start = time.time()
-    error = ssim(image1, image2)
+    error = ssim(gray_image1, gray_image2)
     end = time.time()
     print('The structural similarity index for measuring from algorithm is ' +
           str(error) + ' time ' + str(end - start))
