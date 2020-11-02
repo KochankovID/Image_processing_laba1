@@ -1,9 +1,8 @@
-import numpy as np
-import cv2
 import time
-
 import sys
 import os.path as osp
+
+import cv2
 
 
 def average(img):
@@ -42,7 +41,8 @@ if __name__ == "__main__":
         image_path = sys.argv[1]
         assert osp.isfile(image_path), '{} is not a file!'.format(image_path)
     except IndexError:
-        raise AssertionError('image path must be specified!')
+        print('Path to the image is not valid! The default path was set!')
+        image_path = './src/google.jpg'
 
     image = cv2.imread(image_path)
     cv2.imshow('Original image', image)

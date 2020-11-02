@@ -11,7 +11,7 @@ def _as_floats(image1, image2):
 
 def immse(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The mean-squared error'''
-    image1, image2 = _as_floats(image1, image2)  # - uncomment if you want same results for immse and psnr
+    image1, image2 = _as_floats(image1, image2) # - uncomment if you want same results for immse and psnr
     return ((image1 - image2) ** 2).mean()
 
 
