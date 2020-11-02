@@ -27,8 +27,7 @@ def psnr(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
 def ssim(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The structural similarity index for measuring'''
     image1, image2 = _as_floats(image1, image2)
-    image1 = image1.flatten()
-    image2 = image2.flatten()
+    
     ux = image1.mean()
     uy = image2.mean()
     qx = np.var(image1)
@@ -40,6 +39,10 @@ def ssim(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
 
     C1 = (K1 * 2) ** 2
     C2 = (K2 * 2) ** 2
+    C3 = C2 / 2
 
-    res = ((2 * ux * uy + C1) * (2 * qxy + C2)) / ((ux ** 2 + uy ** 2 + C1)*(qx + qy + C2))
+    l = (2 * ux * uy + C1) / (ux ** 2 + uy ** 2 + C1)
+    c = (2 * math.sqrt(qx * qy) + C2) / (qx + qy + C2)
+    s = (qxy + C3) / (math.sqrt(qx * qy) + C3)
+    res = (l ** 1) * (c ** 1) * (s ** 1)
     return res.mean()
