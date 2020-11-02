@@ -1,8 +1,8 @@
-import cv2
 import time
-
 import sys
 import os.path as osp
+
+import cv2
 
 
 def average(img):
