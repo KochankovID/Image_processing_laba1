@@ -1,4 +1,3 @@
-import numpy as np
 import cv2
 import os
 import sys
@@ -125,7 +124,7 @@ if __name__ == "__main__":
     Compare2ImagesIMMSE(first_image_path, second_image_path)
     Compare2ImagesFromLibPSNR(first_image_path, second_image_path)
     Compare2ImagesPSNR(first_image_path, second_image_path)
-    
+
     # LibSSIM and SSIM are not exactly the same because
     # LibSSIM is not using covariation and variation as in formula,
     # but using skimage inside filters

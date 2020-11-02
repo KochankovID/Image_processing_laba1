@@ -10,13 +10,13 @@ def _as_floats(image1, image2):
 
 
 def immse(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
-    '''The mean-squared error'''
-    image1, image2 = _as_floats(image1, image2) # - uncomment if you want same results for immse and psnr
+    """The mean-squared error"""
+    image1, image2 = _as_floats(image1, image2)  # - uncomment if you want same results for immse and psnr
     return ((image1 - image2) ** 2).mean()
 
 
 def psnr(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
-    '''The peak signal-to-noise ratio'''
+    """The peak signal-to-noise ratio"""
     mse = immse(image1, image2)
     if mse == 0:
         return 100
@@ -27,7 +27,7 @@ def psnr(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
 def ssim(image1: np.ndarray, image2: np.ndarray) -> np.ndarray:
     '''The structural similarity index for measuring'''
     image1, image2 = _as_floats(image1, image2)
-    
+
     ux = image1.mean()
     uy = image2.mean()
     qx = np.var(image1)
