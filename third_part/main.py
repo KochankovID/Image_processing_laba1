@@ -23,7 +23,6 @@ def get_time(f: callable, *args, **kwargs):
     return result
 
 
-
 def test_BGR2YUV_converter(image_path: str) -> None:
     '''Test converter from BGR to YUV on image stored by image_path'''
     image = cv2.imread(image_path)
